@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Cineman</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bd-example">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="bd-exemple">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">Collapsed content
+                <a class="navbar-brand" href="">CINEMAN</a>
+                <div id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'~/person/actor_list'}">Liste des acteurs</a>
+                        </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">accueil <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#">Liste des Films</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Acteurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'/rechercher'}">Ajout d'un film</a>
+                            <a class="nav-link" th:href="@{'~/film/film_form'}">Ajouter un film</a>
                         </li>
                     </ul>
+                </div>
             </nav>
         </div>
     </div>
@@ -30,36 +33,41 @@
         </button>
     </nav>
 </div>
+
 <div class="container">
-    <h1 th:text="'Bienvenue '+${annonce}"></h1>
-    <h2> Liste des acteurs</h2>
+
+    <h2> Liste des Films</h2>
     <table class="table table-sm">
         <thead>
         <tr class="bg-info">
             <th class="bg-info" style="; color: #fff;">id</th>
             <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">titre</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">notation</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">resume</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">realisateur</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">note</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Résumé du film</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Affiche</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Réalisateur</th>
             <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Fiche complète du film</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="personnes : ${personnes}">
-            <td th:text="${personnes.getId()}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>
-            <td th:text="${personnes.getNom()}" style="border: solid 1px #ccc">The table body</td>
-            <td th:text="${personnes.getPrenom()}" style="border: solid 1px #ccc">The table body</td>
-            <td th:text="${personnes.getNaissance()}" style="border: solid 1px #ccc; border-right: solid 1px #ccc">The table body</td>
-            <td th:text="${personnes.getAffiche()}" style="border: solid 1px #ccc;">The table body</td>
+        <tr th:each="film : ${films}">
+            <td th:text="${film.id}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>
+            <td th:text="${film.titre}" style="border: solid 1px #ccc">The table body</td>
+            <td th:text="${film.notation}" style="border: solid 1px #ccc">The table body</td>
+            <td th:text="${film.resume}" style="border: solid 1px #ccc; border-right: solid 1px #ccc">The table body</td>
+            <td th:text="${film.affiche}" style="border: solid 1px #ccc;">The table body</td>
+            <td th:text="${film.realisateur}" style="border: solid 1px #ccc;">The table body</td>
             <td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Info</a></td>
 
         </tr>
         </tbody>
     </table>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 </body>
 </html>

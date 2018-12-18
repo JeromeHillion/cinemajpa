@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Title</title>
+</head>
+<body>
+<div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bd-exemple">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">Collapsed content
+                <a class="navbar-brand" href="">CINEMAN</a>
+                <div id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'~/person/actor_list'}">Liste des acteurs</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">Liste des Films</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" >Ajouter un film</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+</div>
+<div class="container">
+    <fieldset>
+        <legend>Ajout d'un film</legend>
+        <form>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault01">Id</label>
+                    <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="id" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault02">Titre</label>
+                    <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="titre" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefaultUsername">Notation</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="validationDefaultUsername" placeholder="note" aria-describedby="inputGroupPrepend2" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                        <label class="custom-file-label" for="inputGroupFile01">ajouter une affiche</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault04">Résumé</label>
+                    <input type="text" class="form-control" id="validationDefault04" placeholder="résumé" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault05">Réalisateur</label>
+                    <input type="text" class="form-control" id="validationDefault05" placeholder="réalisateur" required>
+                </div>
+            </div>
+            <button class="btn btn-info" type="submit">Ajouter</button>
+        </form>
+    </fieldset>
+</div>
+<hr style="background-color: #17A2B8;">
+<div class="container">
+
+    <h2> Liste des Films</h2>
+    <table class="table table-sm">
+        <thead>
+        <tr class="bg-info">
+            <th class="bg-info" style="; color: #fff;">id</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">titre</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">note</th>
+            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Résumé du film</th>
+           </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${films}">
+            <td th:text="${film.id}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>
+            <td th:text="${film.titre}" style="border: solid 1px #ccc">The table body</td>
+            <td th:text="${film.affiche}" style="border: solid 1px #ccc;">The table body</td>
+            <td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Supprimer</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

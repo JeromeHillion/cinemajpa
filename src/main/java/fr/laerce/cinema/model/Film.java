@@ -1,37 +1,45 @@
 package fr.laerce.cinema.model;
-import org.springframework.stereotype.Component;
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name="films")
-public class Film  {
-    private Long id;
-    private String titre;
-    private Double notation;
-    private String affiche;
-    private String resume;
-    private Personne realisateur;
-   /* private List<Role> roles;*/
-
-
-
-
-
+@Entity(name = "films")
+public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Long getId() {
+    private long id;
+    @Basic
+    @Column(name = "title", nullable = false, length = 60)
+    private String titre;
+    @Basic
+    @Column(name ="rating", nullable = true)
+    private String notation;
+    @Basic
+    @Column(name = "summary", nullable = true)
+    private String resume;
+    @Basic
+    @Column(name="image_path",length = 120)
+    private String affiche;
+    @ManyToOne
+    @JoinColumn(name="film_director")
+    private Personne realisateur;
+
+    public Personne getRealisateur(){
+        return realisateur;
+    }
+
+    public void setRealisateur(Personne realisateur) {
+        this.realisateur = realisateur;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "title", nullable = false, length = 60)
     public String getTitre() {
         return titre;
     }
@@ -39,17 +47,15 @@ public class Film  {
     public void setTitre(String titre) {
         this.titre = titre;
     }
-    @Basic
-    @Column(name ="rating", nullable = true)
-    public Double getNotation() {
+
+    public String getNotation() {
         return notation;
     }
 
-    public void setNotation(Double notation) {
+    public void setNotation(String notation) {
         this.notation = notation;
     }
-    @Basic
-    @Column(name = "summary", nullable = true)
+
     public String getResume() {
         return resume;
     }
@@ -57,23 +63,20 @@ public class Film  {
     public void setResume(String resume) {
         this.resume = resume;
     }
-    @Basic
-    @Column(name="image_path",length = 120)
+
     public String getAffiche() {
         return affiche;
     }
+
     public void setAffiche(String affiche) {
         this.affiche = affiche;
     }
-    @ManyToOne
-    @JoinColumn(name="film_director")
-    public Personne getRealisateur() {
-        return realisateur;
-    }
 
-    public void setRealisateur (Personne realisateur)  {
-        this.realisateur = realisateur;
-    }
+
+
+
+
+
 
 
 
