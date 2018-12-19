@@ -56,7 +56,7 @@
             <td th:text="${personne.nom}" style="border: solid 1px #ccc">The table body</td>
             <td th:text="${personne.prenom}" style="border: solid 1px #ccc">The table body</td>
             <td th:text="${personne.naissance}" style="border: solid 1px #ccc; border-right: solid 1px #ccc">The table body</td>
-            <td th:text="${personne.affiche}" style="border: solid 1px #ccc;">The table body</td>
+            <td><img src="" th:src="@{'/person/photo/'+${personne.prenom+ personne.nom}}" alt=""></td>
             <td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Info</a></td>
 
         </tr>

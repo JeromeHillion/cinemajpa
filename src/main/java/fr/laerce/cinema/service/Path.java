@@ -4,7 +4,7 @@ package fr.laerce.cinema.service;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
-@ConfigurationProperties(prefix = "tpcinema.path")
+@ConfigurationProperties(prefix = "cinema.path")
 @Validated
 public class Path {
     private String affiche;
