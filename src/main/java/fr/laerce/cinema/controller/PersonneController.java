@@ -38,13 +38,14 @@ public class PersonneController {
         return "person/actor_list";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/actor_detail/{id}")
     public String detail(@PathVariable("id") long id, Model model) {
         /*model.addAttribute("personne", personneDao.findById(id).get());*/
         /** Avec gestion des erreurs**/
         Personne personne;
         personne = personneDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Requète invalide"));
-        return "person/detail";
+        model.addAttribute("personne", personne);
+        return "person/actor_detail";
     }
 
     /** Gestion de l'affichage de l'image**/
