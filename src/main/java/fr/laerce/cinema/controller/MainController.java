@@ -1,14 +1,15 @@
 package fr.laerce.cinema.controller;
 
-
 import fr.laerce.cinema.dao.FilmDao;
+import fr.laerce.cinema.dao.PersonneDao;
 import fr.laerce.cinema.model.Film;
+import fr.laerce.cinema.model.Personne;
+import fr.laerce.cinema.service.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,32 +20,42 @@ import java.io.OutputStream;
 
 /** On indique à springboot qu'il s'agit d'une classe controller**/
 @Controller
-@RequestMapping(value = "film")
-public class FilmController {
+public class MainController {
 
     @Autowired
     FilmDao filmDao;
 
-    @GetMapping("/film_list")
-    public String film_list(Model model){
+    @Autowired
+    PersonneDao personneDao;
+
+    /*@Autowired*/
+   /* Path path;*/
+
+    @GetMapping("/")
+    public String main(Model model){
         model.addAttribute("films", filmDao.findAll());
-        return "film/film_list";
+        return "index";
     }
 
-    @GetMapping("/film_detail/{id}")
+/*
+    @GetMapping("film/film_detail/{id}")
     public String detail(@PathVariable("id") long id, Model model) {
-        /*model.addAttribute("personne", filmDao.findById(id).get());*/
-        /** Avec gestion des erreurs**/
+        */
+/*model.addAttribute("personne", filmDao.findById(id).get());*//*
+
+        */
+/** Avec gestion des erreurs**//*
+
         Film film;
         film = filmDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Requète invalide"));
-       model.addAttribute("film", film);
         return "film/film_detail";
     }
+*/
 
     /**Gestion de l'afichage des affiches de film**/
-    @GetMapping("/poster/{titre}")
-    public void affiche(HttpServletRequest request, HttpServletResponse response, @PathVariable("titre") String titre) throws IOException{
-        String filename = "C:\\Users\\CDI\\Documents\\images\\poster\\"+titre;
+    @GetMapping("/poster/{affiche}")
+    public void  affiche(HttpServletRequest request, HttpServletResponse response, @PathVariable("affiche") String affiche) throws IOException{
+        String filename = "C:\\Users\\Gideon\\Pictures\\affiches\\"+affiche+".jpg";
 
         /**UTILITAIRE POUR IMPORTER DES IMAGES A PARTIR D'UN FOLDER EXTERNE A L'APPLICATION**/
         String mime = request.getServletContext().getMimeType(filename);
@@ -65,12 +76,4 @@ public class FilmController {
         out.close();
         in.close();
     }
-
-
-    @GetMapping("/film_form")
-    public String film_form(Model model){
-        model.addAttribute("films", filmDao.findAll());
-        return "film/film_form";
-    }
-
 }

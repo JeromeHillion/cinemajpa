@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">    <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bd-exemple">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">Collapsed content
-                <a class="navbar-brand" href="">CINEMAN</a>
-                <div id="navbarColor01">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'~/person/actor_list'}">Liste des acteurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Liste des Films</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'~/film/film_form'}">Ajouter un film</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
+<div class="ui inverted menu">
+    <a class="item">
+        Accueil
+    </a>
+    <a class=" activeitem">
+        Acteurs
+    </a>
+    <a class="item">
+        Films
+    </a>
+    <a class="item">
+        Ajout de film
+    </a>
 </div>
 <!--fin du nav-->
 

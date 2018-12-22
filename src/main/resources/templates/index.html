@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 -->
     <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
     <title>Cineman</title>
 </head>
 <body>
@@ -25,77 +26,34 @@
     </a>
 </div>
 <h1 class="ui header">Bienvenue sur le site du cinéma le CINEMAN</h1>
+<div class="html ui top attached segment">
+<div class="ui special cards" >
+    <div class="card" th:each="films : ${films}">
+        <div class="blurring dimmable image index_img"  >
+            <div class="ui dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui inverted button">Add Friend</div>
+                    </div>
+                </div>
+            </div>
+            <img th:src="@{'/poster/' +${films.affiche}}">
+        </div>
+        <div class="content">
+            <a class="header" th:text="${films.titre}">Team Fu</a>
+            <div class="meta">
+                <span class="date" th:text="${films.notation}">Created in Sep 2014</span>
+            </div>
+        </div>
+        <div class="extra content" th:each="film : ${films}">
+            <a th:href="'/film/film_detail/' +${film.id}">
+                <i class="film icon"></i>
+                Voir la fiche
+            </a>
+        </div>
+    </div>
 
-<div class="ui link cards">
-    <div class="card">
-        <div class="image">
-            <img src="/images/avatar2/large/matthew.png">
-        </div>
-        <div class="content">
-            <div class="header">Matt Giampietro</div>
-            <div class="meta">
-                <a>Friends</a>
-            </div>
-            <div class="description">
-                Matthew is an interior designer living in New York.
-            </div>
-        </div>
-        <div class="extra content">
-      <span class="right floated">
-        Joined in 2013
-      </span>
-            <span>
-        <i class="user icon"></i>
-        75 Friends
-      </span>
-        </div>
-    </div>
-    <div class="card">
-        <div class="image">
-            <img src="/images/avatar2/large/molly.png">
-        </div>
-        <div class="content">
-            <div class="header">Molly</div>
-            <div class="meta">
-                <span class="date">Coworker</span>
-            </div>
-            <div class="description">
-                Molly is a personal assistant living in Paris.
-            </div>
-        </div>
-        <div class="extra content">
-      <span class="right floated">
-        Joined in 2011
-      </span>
-            <span>
-        <i class="user icon"></i>
-        35 Friends
-      </span>
-        </div>
-    </div>
-    <div class="card">
-        <div class="image">
-            <img src="/images/avatar2/large/elyse.png">
-        </div>
-        <div class="content">
-            <div class="header">Elyse</div>
-            <div class="meta">
-                <a>Coworker</a>
-            </div>
-            <div class="description">
-                Elyse is a copywriter working in New York.
-            </div>
-        </div>
-        <div class="extra content">
-      <span class="right floated">
-        Joined in 2014
-      </span>
-            <span>
-        <i class="user icon"></i>
-        151 Friends
-      </span>
-        </div>
-    </div>
+</div>
 </div>
 <!--<div class="pos-f-t">-->
     <!--<div class="collapse" id="navbarToggleExternalContent">-->
@@ -149,8 +107,7 @@
         <!--</tbody>-->
     <!--</table>-->
 <!--</div>-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<th:block th:insert="fragments/script.html :: script"> </th:block>
+
 </body>
 </html>
