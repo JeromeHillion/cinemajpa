@@ -1,4 +1,15 @@
-.index_img:hover{
-    background-color: #cccccc;
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+body{
+    background-color: #ECEFF1;
+    padding: 20px;
 
+}
+.segment{
+    padding: 20px;
+}
+.cineman{
+    color: #00695C !important;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Permanent Marker', cursive;
 }
