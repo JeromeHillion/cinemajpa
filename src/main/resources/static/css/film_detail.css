@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23 déc. 2018, 19:34:40
+    Author     : Gideon
+*/
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+body{
+    background-color: #ECEFF1;
+    padding: 20px;
+
+}
+.segment{
+    padding: 20px;
+}
+.cineman{
+    color: #00695C !important;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Permanent Marker', cursive;
+}
+h1, h2{
+  color: #00695C;  
+}
