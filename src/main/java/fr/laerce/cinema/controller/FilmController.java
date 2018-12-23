@@ -2,7 +2,10 @@ package fr.laerce.cinema.controller;
 
 
 import fr.laerce.cinema.dao.FilmDao;
+import fr.laerce.cinema.dao.PersonneDao;
+import fr.laerce.cinema.dao.RoleDao;
 import fr.laerce.cinema.model.Film;
+import fr.laerce.cinema.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,12 @@ public class FilmController {
 
     @Autowired
     FilmDao filmDao;
+    
+    @Autowired
+    PersonneDao personneDao;
+    
+    @Autowired
+    RoleDao roleDao;
 
     @GetMapping("/film_list")
     public String film_list(Model model){
@@ -38,6 +47,9 @@ public class FilmController {
         Film film;
         film = filmDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Requète invalide"));
        model.addAttribute("film", film);
+       
+    
+       model.addAttribute("role", filmDao.findById(id).get().getPosts());
         return "film/film_detail";
     }
 
