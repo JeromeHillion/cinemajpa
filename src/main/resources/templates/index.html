@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"> 
 <head>
     <meta charset="UTF-8">
 <!--
@@ -12,6 +13,10 @@
 <body>
 
 <div class="ui inverted menu">
+      </a>
+    <a class="item cineman">
+        <i class="film icon"></i>CINEMAN
+    </a>
     <a class="active item">
         Accueil
     </a>
@@ -37,7 +42,8 @@
                     </div>
                 </div>
             </div>
-            <img th:src="@{'/poster/' +${films.affiche}}">
+            <img  th:src="@{'/poster/' +${films.affiche}}">
+                <span> hello world !</span>
         </div>
         <div class="content">
             <a class="header" th:text="${films.titre}">Team Fu</a>
