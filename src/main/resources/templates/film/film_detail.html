@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"> 
 <head>
     <meta charset="UTF-8">
     <th:block th:insert="fragments/head.html :: head"> </th:block>
+    <link href="../static/css/index.css" th:href="@{/css/film_detail.css}" rel="stylesheet">
+
     <title>Title</title>
+    
 </head>
 <body>
 <div class="ui inverted menu">
-    <a class="active item">
+      </a>
+    <a class="item cineman">
+        <i class="film icon"></i>  CINEMAN
+    </a>
+    <a class="item">
         Accueil
     </a>
     <a class="item">
@@ -19,30 +27,33 @@
     <a class="item">
         Ajout de film
     </a>
-</div>
-
-<div class="ui-grid">
-    <div class="ui special cards" >
-        <div class="card" th:each="film : ${film}">
-            <div class="blurring dimmable image index_img"  >
-                <img th:src="@{'/poster/' +${film.affiche}}">
-            </div>
-                </div>
-
-
-        <div class="twelve wide column">
-            <div class="content">
-                <div class="author">
-                    <div class="ui inverted button">Résumé</div>
-                </div>
-                <div class="text" th:text="${film.resume}">
-                </div>
-            </div>
-        </div>
+</div><!--
+  <div class="ui grid">
+        <div class="three wide column" th:each="film : ${film}">
+            <img class="ui wireframe image" th:src="@{'/poster/' +${film.affiche}">    
+        </div><!--
+        -->
+<!--        <div class="ten wide column">
+            <span th:text="${film.notation}"></span>
+        </div>-->
+<!--    </div>
+--><div class="ui internally celled grid" >
+  <div class="row">
+    <div class="three wide column" th:each="film : ${film}">
+      <img th:src="@{'/poster/' +${film.affiche}}">
+    </div>
+    <div class="ten wide column">
+        <h1 th:text="${film.titre}"></h1>
+        <h3 th:text="${'Note : '+film.notation}"></h3>
+        <h3 th:text="${film.realisateur}"></h3>
+        <h2>Résumé du film : </h2>
+      <p th:text="${film.resume}"></p>
     </div>
 
-    </div>
+  </div>
 </div>
+
+
 <th:block th:insert="fragments/script.html :: script"> </th:block>
 </body>
 </html>
