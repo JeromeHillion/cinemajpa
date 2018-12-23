@@ -1,36 +1,25 @@
 package fr.laerce.cinema.model;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
-@Entity(name = "films")
+@Entity
+@Table(name = "films")
 public class Film {
+    private long id;
+    private  String title;
+    private Double rating;
+    private String image_path;
+    private String summary;
+    private Personne film_director;
+    private Set<Role> posts;
+    private List<Genre> genreFilm = new ArrayList<Genre>();
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long id;
-    @Basic
-    @Column(name = "title", nullable = false, length = 60)
-    private String titre;
-    @Basic
-    @Column(name ="rating", nullable = true)
-    private String notation;
-    @Basic
-    @Column(name = "summary", nullable = true)
-    private String resume;
-    @Basic
-    @Column(name="image_path",length = 120)
-    private String affiche;
-    @ManyToOne
-    @JoinColumn(name="film_director")
-    private Personne realisateur;
-
-    public Personne getRealisateur(){
-        return realisateur;
-    }
-
-    public void setRealisateur(Personne realisateur) {
-        this.realisateur = realisateur;
-    }
 
     public long getId() {
         return id;
@@ -39,76 +28,93 @@ public class Film {
     public void setId(long id) {
         this.id = id;
     }
-
-    public String getTitre() {
-        return titre;
+    
+    @OneToMany(mappedBy = "film")
+    public Set<Role> getPosts() {
+        return posts;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setPosts(Set<Role> posts) {
+        this.posts = posts;
+    }
+    
+    @Basic
+    @Column(name = "title", nullable = false, length = 60)
+    public String getTitle() {
+        return title;
     }
 
-    public String getNotation() {
-        return notation;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    @Basic
+    @Column(name = "rating", nullable = true)
+
+    public Double getRating() {
+        return rating;
     }
 
-    public void setNotation(String notation) {
-        this.notation = notation;
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+    
+    @Basic
+    @Column(name = "image_path", nullable = true, length = 120)
+    
+    public String getImage_path() {
+        return image_path;
     }
 
-    public String getResume() {
-        return resume;
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+    
+    @Basic
+    @Column(name = "summary", nullable = true, length = 80)
+
+    public String getSummary() {
+        return summary;
     }
 
-    public void setResume(String resume) {
-        this.resume = resume;
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name = "film_director")
+
+    public Personne getFilm_director() {
+        return film_director;
     }
 
-    public String getAffiche() {
-        return affiche;
+    public void setFilm_director(Personne film_director) {
+        this.film_director = film_director;
+    }
+    
+    @ManyToMany(mappedBy = "listfilm")
+    public List<Genre> getGenreFilm() {
+        return genreFilm;
     }
 
-    public void setAffiche(String affiche) {
-        this.affiche = affiche;
+    public void setGenreFilm(List<Genre> genreFilm) {
+        this.genreFilm = genreFilm;
     }
-
-
-
-
-
-
-
-
-
-
- /*   public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }*/
-
-
-    @Override
+     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass () != o.getClass ()) return false;
+
         Film film = (Film) o;
-        return Objects.equals(id, film.id) &&
-                Objects.equals(titre, film.titre) &&
-                Objects.equals(notation, film.notation) &&
-                Objects.equals(affiche, film.affiche) &&
-                Objects.equals(resume, film.resume) &&
-                Objects.equals(realisateur, film.realisateur);
+
+        if (id != film.id) return false;
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, titre, notation, affiche, resume, realisateur);
-    }
-    /*   return Objects.hash(getTitre(), getNotation(), getResume());*/
-
+        return Objects.hash (getId ());
+}
     }
 
 
