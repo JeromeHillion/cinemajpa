@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @author Gideon
  */
 @Entity(name = "Role")
-@Table
+@Table(name="play")
 public class Role {
     @EmbeddedId
     private PlayPk id;

@@ -13,19 +13,19 @@
 <div class="ui inverted menu">
       </a>
     <a class="item cineman">
-        <i class="film icon"></i>  CINEMAN
+          CINEMAN
     </a>
     <a class="item">
-        Accueil
+        <i class="home icon"></i>    Accueil
     </a>
     <a class="item">
-        Acteurs
+        <i class="users icon"></i>Acteurs
     </a>
     <a class="item">
-        Films
+       <i class="film icon"></i> Films
     </a>
     <a class="item">
-        Ajout de film
+       <i class="edit icon"></i> Genre
     </a>
 </div><!--
   <div class="ui grid">
@@ -38,22 +38,33 @@
         </div>-->
 <!--    </div>
 -->
-<div class="ui internally celled grid" >
+<!--<div class="ui internally celled grid" >
   <div class="row">
     <div class="three wide column" th:each="film : ${film}">
-      <img th:src="@{'/poster/' +${film.getImage_path()}}">
+      <img th:src="@{'/affiche/' +${film.getImage_path()}}">
     </div>
     <div class="ten wide column">
         <h1 th:text="${film.title}"></h1>
-        <h3 th:text="${'Note : '+film.rating}"></h3><!--
--->        <h3 th:each="genre:${film.getGenreFilm()}" th:text="'Genre : '+${genre.name}"></h3>
+        <h3 th:text="${'Note : '+film.rating}"></h3>
+        <h3 th:each="genre:${film.getGenreFilm()}" th:text="'Genre : '+${genre.name}"></h3>
         <h2>Résumé du film : </h2>
       <p th:text="${film.summary}"></p>
     </div>
 
   </div>
 </div>
-
+<div class="ui very relaxed items">
+  <div class="item">
+    <div class="image">
+      <img src="/images/wireframe/image.png">
+    </div>
+    <div class="content">
+      <a class="ui header" href="#link">Link Header</a>
+      <div class="description">
+        <p>Ut imperdiet dignissim feugiat. Phasellus tristique odio eu justo dapibus, nec rutrum ipsum luctus. Ut posuere nec tortor eu ullamcorper. <a href="#link">Etiam pellentesque</a> tincidunt tortor, non sagittis nibh pretium sit amet. Sed neque dolor, blandit eu ornare vel, lacinia porttitor nisi. Vestibulum sit amet diam rhoncus, consectetur enim sit amet, interdum mauris. Praesent feugiat finibus quam, porttitor varius est egestas id.</p>
+      </div>
+    </div>
+  </div>-->
 
 <th:block th:insert="fragments/script.html :: script"> </th:block>
 </body>

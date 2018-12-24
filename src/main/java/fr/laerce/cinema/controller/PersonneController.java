@@ -16,18 +16,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 
 /** On indique à springboot qu'il s'agit d'une classe controller**/
 @Controller
-@RequestMapping(value = "/person")
 public class PersonneController {
 
     @Autowired
     PersonneDao personneDao;
 
-    @Autowired
-    Path path;
+
 
   /*  @Autowired
     ImageManager imm;*/
@@ -49,58 +53,56 @@ public class PersonneController {
     }
 
     /** Gestion de l'affichage de l'image**/
-    @GetMapping("/photo/{nom}")
-    public void photo(HttpServletRequest request, HttpServletResponse response, @PathVariable("nom") String nom) throws IOException{
+   
+//    @Value( "${url}" )
+//    private String url;
+//    //deuxieme methode pour affichezr  image
+//    @GetMapping("/affiche/{id}")
+//    public ResponseEntity<byte[]> getImageAsResponseEntity (HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
+//        try {
+//            HttpHeaders headers = new HttpHeaders ();
+//            String filename=url+id;
+//            File i = new File (filename);
+//            FileInputStream in = new FileInputStream(i);
+//            byte[] media = IOUtils.toByteArray (in);
+//            headers.setCacheControl (CacheControl.noCache ().getHeaderValue ());
+//
+//            ResponseEntity<byte[]> responseEntity = new ResponseEntity<> (media, headers, HttpStatus.OK);
+//            return responseEntity;
+//        } catch (IOException e) {
+//            e.printStackTrace ();
+//        }
+//       return null;
+// }
+ //on copie/colle la methode pour le portrait des acteur
+//    @Value( "${url2}" )
+    private String url2;
+    //que l'on mappe sur image/id id etant le nom brut de l'image
+    @GetMapping("/image/{id}")
+    public ResponseEntity<byte[]> getImageAsResponseEntity2 (HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
+        try {
+            HttpHeaders headers = new HttpHeaders ();
+            String filename=url2+id;
+            File i = new File (filename);
+            FileInputStream in = new FileInputStream(i);
+            byte[] media = IOUtils.toByteArray (in);
+            headers.setCacheControl (CacheControl.noCache().getHeaderValue());
 
-        String filename = "C:\\Users\\CDI\\Documents\\images\\photos\\"+ nom + ".jpg";//  path.getAffiche() + id;
-
-        // ============ UTILITAIRE POUR IMPORTER DES IMAGES A PARTIR D'UN FOLDER EXTERNE A L'APPLICATION ============ //
-        String mime = request.getServletContext().getMimeType(filename);
-        if (mime == null) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return;
+            ResponseEntity<byte[]> responseEntity = new ResponseEntity<> (media, headers, HttpStatus.OK);
+            return responseEntity;
+        } catch (IOException e) {
+            e.printStackTrace ();
         }
-        response.setContentType(mime);
-        File file = new File(filename);
-        response.setContentLength((int) file.length());
-        FileInputStream in = new FileInputStream(file);
-        OutputStream out = response.getOutputStream();
-        byte[] buf = new byte[1024];
-        int count = 0;
-        while ((count = in.read(buf)) >= 0) {
-            out.write(buf, 0, count);
-        }
-        out.close();
-        in.close();
+        return null;
     }
-
-
-
-    @GetMapping("/mod/{id}")
-    public String mod(@PathVariable("id") long id, Model model) {
-        model.addAttribute("personne", personneDao.findById(id).get());
-        return "person/form";
-    }
-
-    @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("personne", new Personne());
-        return "person/form";
-    }
-
-/*    @PostMapping("/add")
-    public String submit(@RequestParam("photo") MultipartFile file, @ModelAttribute Personne personne) {
-        if (file.getContentType().equalsIgnoreCase("image/jpeg")) {
-            try {
-                imm.savePhoto(personne, file.getInputStream());
-            } catch (IOException ioe) {
-                System.out.println("Erreur lecture : " + ioe.getMessage());
-            }
-        }
-        personneDao.save(personne);
-        return "redirect:/person/list";
-    }*/
+    @GetMapping("/acteur/{id}")
+    //on recupere id grace à pathvariable
+    public String acteur(Model m, @PathVariable("id") String id){
+        //on envoie a acteur la personne concernée grace a la methode getbyaf et id qui est le nom de l'image
+        m.addAttribute ("actor", personneDao.findByPhotoPath (id));
+        return"acteur";}
 }
+
 
 
 

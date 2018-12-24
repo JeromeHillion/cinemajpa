@@ -92,7 +92,7 @@ public class Film {
         this.film_director = film_director;
     }
     
-    @ManyToMany(mappedBy = "listfilm")
+    @ManyToMany(mappedBy = "listFilm")
     public List<Genre> getGenreFilm() {
         return genreFilm;
     }
