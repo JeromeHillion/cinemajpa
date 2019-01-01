@@ -51,6 +51,7 @@ public class FilmController {
         return "film/film_detail";
     }
 
+    //deuxieme methode pour afficher  les images
     /**Gestion de l'afichage des affiches de film**/
 //    @GetMapping("/poster/{titre}")
 //    public void affiche(HttpServletRequest request, HttpServletResponse response, @PathVariable("titre") String titre) throws IOException{
@@ -77,13 +78,12 @@ public class FilmController {
 //    }
 
 // @Value( "${url}" )
-    private String url;
-    //deuxieme methode pour afficher  les images
-    @GetMapping("/affiche/{id}")
-    public ResponseEntity<byte[]> getImageAsResponseEntity (HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
+     String url;
+    @GetMapping("/affiche/{image_path}")
+    public ResponseEntity<byte[]> getImageAsResponseEntity (HttpServletRequest request, HttpServletResponse response, @PathVariable("image_path") String image_path) {
         try {
             HttpHeaders headers = new HttpHeaders ();
-            String filename=url+id;
+            String filename=url+image_path;
             File i = new File (filename);
             FileInputStream in = new FileInputStream(i);
             byte[] media = IOUtils.toByteArray (in);

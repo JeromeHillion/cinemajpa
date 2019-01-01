@@ -7,10 +7,10 @@ import java.util.List;
 @Table(name = "persons")
 public class Personne {
     private long id;
-    private String nom;
-    private String prenom;
+    private String surname;
+    private String givenname;
     private LocalDate naissance;
-    private String photoPath;
+    private String image_path;
     private List<Film> listeFilms;
     private List<Role> posts;
 
@@ -38,22 +38,22 @@ public class Personne {
     }
     @Basic
     @Column(name = "surname", nullable = false, length = 60)
-    public String getNom() {
-        return nom;
+    public String getsurname() {
+        return surname;
     }
 
-    public void setNom(String surname) {
-        this.nom = surname;
+    public void setsurname(String surname) {
+        this.surname = surname;
     }
 
     @Basic
     @Column(name = "givenname", nullable = true, length = 40)
-    public String getPrenom() {
-        return prenom;
+    public String getgivenname() {
+        return givenname;
     }
 
-    public void setPrenom(String givenname) {
-        this.prenom = givenname;
+    public void setgivenname(String givenname) {
+        this.givenname = givenname;
     }
 
     @Basic
@@ -68,12 +68,12 @@ public class Personne {
 
     @Basic
     @Column(name = "image_path", nullable = true, length = 80)
-    public String getPhotoPath() {
-        return photoPath;
+    public String getImage_path() {
+        return image_path;
     }
 
-    public void setPhotoPath(String imagePath) {
-        this.photoPath = imagePath;
+    public void setImage_path(String imagePath) {
+        this.image_path = imagePath;
     }
 
 

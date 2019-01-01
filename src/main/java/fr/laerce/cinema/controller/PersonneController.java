@@ -99,7 +99,7 @@ public class PersonneController {
     //on recupere id grace à pathvariable
     public String acteur(Model m, @PathVariable("id") String id){
         //on envoie a acteur la personne concernée grace a la methode getbyaf et id qui est le nom de l'image
-        m.addAttribute ("actor", personneDao.findByPhotoPath (id));
+        m.addAttribute ("actor", personneDao.findAllByImage_path (id));
         return"acteur";}
 }
 

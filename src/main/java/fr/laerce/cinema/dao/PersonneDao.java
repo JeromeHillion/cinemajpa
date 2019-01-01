@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface PersonneDao extends CrudRepository<Personne,Long> {
-     public Personne findByPhotoPath(String img);
+     public Personne findAllByImage_path(String img);
 }

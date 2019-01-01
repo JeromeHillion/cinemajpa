@@ -2,72 +2,75 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Title</title>
+    <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">    <title>Title</title>
 </head>
 <body>
-<div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bd-exemple">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">Collapsed content
-                <a class="navbar-brand" href="">CINEMAN</a>
-                <div id="navbarColor01">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'~/person/actor_list'}">Liste des acteurs</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Liste des Films</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'~/film/film_form'}">Ajouter un film</a>
-                        </li>
-                    </ul>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class=" item">Accueil</a>
+    <a class="active item">Films</a>
+    <a class="item">Acteurs</a>
+    <a class="item">Contact</a>
+    <a class="item">S'identifier</a>
+    <a class="item">S'inscrire</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class=" item">Accueil</a>
+                <a class="active item">Films</a>
+                <a class="item">Acteurs</a>
+                <a class="item">Contact</a>
+                <div class="right item">
+                    <a class="ui inverted button">S'identifier</a>
+                    <a class="ui inverted button">S'inscrire</a>
                 </div>
-            </nav>
+            </div>
+        </div>
+</div>
+    <h4 class="ui horizontal divider header">
+        <i class="tag icon"></i>
+        Liste des films
+    </h4>
+<div class="ui special cards">
+    <div class="card" th:each=" films : ${films}">
+        <div class="blurring dimmable image">
+            <div class="ui dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui inverted button">Add Friend</div>
+                    </div>
+                </div>
+            </div>
+            <img th:src="@{'/affiche/'+ ${films.image_path}}">
+        </div>
+        <div class="content" >
+            <a class="header" th:text="${films.title}">Team Fu</a>
+            <div class="meta">
+                <span class="date" th:text="${films.film_director}">Created in Sep 2014</span>
+            </div>
+        </div>
+        <div class="extra content">
+            <i class="users icon"></i>
+            <a th:text="${films.rating}">
+                2 Members
+            </a>
         </div>
     </div>
-    <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
 </div>
-
-<div class="container">
-
-    <h2> Liste des Films</h2>
-    <table class="table table-sm">
-        <thead>
-        <tr class="bg-info">
-            <th class="bg-info" style="; color: #fff;">id</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">titre</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">note</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Résumé du film</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Affiche</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Réalisateur</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Fiche complète du film</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="film : ${films}">
-            <td th:text="${film.id}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>
-            <td th:text="${film.titre}" style="border: solid 1px #ccc">The table body</td>
-            <td th:text="${film.notation}" style="border: solid 1px #ccc">The table body</td>
-            <td th:text="${film.resume}" style="border: solid 1px #ccc; border-right: solid 1px #ccc">The table body</td>
-            <td  style="border: solid 1px #ccc;" ><img class="img-thumbnail" th:src="@{'/film/poster/' +${film.affiche}}" alt=""></td>
-            <td th:text="${film.realisateur}" style="border: solid 1px #ccc;">The table body</td>
-            <td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Info</a></td>
-
-        </tr>
-        </tbody>
-    </table>
-
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="webjars/Semantic-UI/2.4.1/semantic.min.js"></script>
+    <script src="webjars/jquery/3.3.1/src/jquery.js"></script>
+    <script src="webjars/less.js/2.7.3/dist/less.min.js"></script>
 
 </body>
 </html>

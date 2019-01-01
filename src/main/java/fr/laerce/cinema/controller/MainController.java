@@ -28,8 +28,7 @@ public class MainController {
     @Autowired
     PersonneDao personneDao;
 
-    /*@Autowired*/
-   /* Path path;*/
+    /* Path path;*/
 
     @GetMapping("/")
     public String main(Model model){

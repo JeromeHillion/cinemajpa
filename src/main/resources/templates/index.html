@@ -12,108 +12,82 @@
 </head>
 <body>
 
-<div class="ui inverted menu">
-      </a>
-    <a class="item cineman">
-      CINEMAN
-    </a>
-    <a class="active item">
-       <i class="home icon"></i>   Accueil
-    </a>
-    <a class="item">
-       <i class="users icon"></i> Acteurs
-    </a>
-    <a class="item">
-          <i class="film icon"></i>Films
-    </a>
-    <a class="item">
-       <i class="edit icon"></i>  Genre
-    </a>
-</div>
-<!--<h1 class="ui header">Bienvenue sur le site du cinéma le CINEMAN</h1>
-<div class="html ui top attached segment">
-<div class="ui special cards" >
-    <div class="card" th:each="films : ${films}">
-        <div class="blurring dimmable image index_img"  >
-            <div class="ui dimmer">
-                <div class="content">
-                    <div class="center">
-                        <div class="ui inverted button">Add Friend</div>
-                    </div>
-                </div>
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">Work</a>
+        <a class="item">Company</a>
+        <a class="item">Careers</a>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui button">Log in</a>
             </div>
-            <img  th:src="@{'/poster/' +${films.affiche}}">
-                <span> hello world !</span>
-        </div>
-        <div class="content">
-            <a class="header" th:text="${films.titre}">Team Fu</a>
-            <div class="meta">
-                <span class="date" th:text="${films.notation}">Created in Sep 2014</span>
+            <div class="item">
+                <a class="ui primary button">Sign Up</a>
             </div>
-        </div>
-        <div class="extra content" th:each="film : ${films}">
-            <a th:href="'/film/film_detail/' +${film.id}">
-                <i class="film icon"></i>
-                Voir la fiche
-            </a>
         </div>
     </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item">Accueil</a>
+    <a class="item">Films</a>
+    <a class="item">Acteurs</a>
+    <a class="item">Contact</a>
+    <a class="item">S'identifier</a>
+    <a class="item">S'inscrire</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="active item">Accueil</a>
+                <a class="item">Films</a>
+                <a class="item">Acteurs</a>
+                <a class="item">Contact</a>
+                <div class="right item">
+                    <a class="ui inverted button">S'identifier</a>
+                    <a class="ui inverted button">S'inscrire</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                CINEMAN
+            </h1>
+            <h2>“Le cinéma, c’est un oeil ouvert sur le monde.”</h2>
+            <div class="ui huge primary button" ><a th:href="@{/film_list}">Voir les films</a><i class="right arrow icon"></i></div>
+        </div>
+
+    </div>
+
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="eight wide column">
+                    <h3 class="ui header">Du cinéma est rien que du cinéma avec le CINEMAN</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam, consequuntur dicta doloremque et exercitationem fugiat hic iste laborum laudantium necessitatibus
+                        nihil quos recusandae sed temporibus veritatis vero, voluptates voluptatibus?</p>
+                    <h3 class="ui header">Du cinéma français mais pas que !</h3>
+                    <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+                </div>
+                <div class="six wide right floated column">
+                    <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
+                </div>
+            </div>
 
 </div>
-</div>-->
-<!--<div class="pos-f-t">-->
-    <!--<div class="collapse" id="navbarToggleExternalContent">-->
-        <!--<div class="bd-example">-->
-            <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-                    <!--<ul class="navbar-nav mr-auto">-->
-                        <!--<li class="nav-item active">-->
-                            <!--<a class="nav-link" href="#">accueil <span class="sr-only">(current)</span></a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-item">-->
-                            <!--<a class="nav-link" href="#">Acteurs</a>-->
-                        <!--</li>-->
-                        <!--<li class="nav-item">-->
-                            <!--<a class="nav-link" th:href="@{'/rechercher'}">Ajout d'un film</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-            <!--</nav>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<nav class="navbar navbar-dark bg-dark">-->
-        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
-            <!--<span class="navbar-toggler-icon"></span>-->
-        <!--</button>-->
-    <!--</nav>-->
-<!--</div>-->
-<!--<div class="container">-->
-    <!--<h1 th:text="'Bienvenue '+${annonce}"></h1>-->
-    <!--<h2> Liste des acteurs</h2>-->
-    <!--<table class="table table-sm">-->
-        <!--<thead>-->
-        <!--<tr class="bg-info">-->
-            <!--<th class="bg-info" style="; color: #fff;">id</th>-->
-            <!--<th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">titre</th>-->
-            <!--<th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">notation</th>-->
-            <!--<th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">resume</th>-->
-            <!--<th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">realisateur</th>-->
-            <!--<th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Fiche complète du film</th>-->
-
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr th:each="personnes : ${personnes}">-->
-            <!--<td th:text="${personnes.getId()}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>-->
-            <!--<td th:text="${personnes.getNom()}" style="border: solid 1px #ccc">The table body</td>-->
-            <!--<td th:text="${personnes.getPrenom()}" style="border: solid 1px #ccc">The table body</td>-->
-            <!--<td th:text="${personnes.getNaissance()}" style="border: solid 1px #ccc; border-right: solid 1px #ccc">The table body</td>-->
-            <!--<td th:text="${personnes.getAffiche()}" style="border: solid 1px #ccc;">The table body</td>-->
-            <!--<td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Info</a></td>-->
-
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
-<th:block th:insert="fragments/script.html :: script"> </th:block>
+<!--<th:block th:insert="fragments/script.html :  script"> </th:block>-->
 
 </body>
 </html>
