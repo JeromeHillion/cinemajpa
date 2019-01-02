@@ -2,21 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">    <title>Title</title>
+    <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">
+    <link href="../static/css/film_list.css" th:href="@{/css/film_list.css}" rel="stylesheet">
+    <title>Liste des films</title>
 </head>
 <body>
-
-<!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu">
-    <a class=" item">Accueil</a>
-    <a class="active item">Films</a>
-    <a class="item">Acteurs</a>
-    <a class="item">Contact</a>
-    <a class="item">S'identifier</a>
-    <a class="item">S'inscrire</a>
-</div>
-
-
 <!-- Page Contents -->
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -26,22 +16,22 @@
                 <a class="toc item">
                     <i class="sidebar icon"></i>
                 </a>
-                <a class=" item">Accueil</a>
-                <a class="active item">Films</a>
-                <a class="item">Acteurs</a>
+                <a th:href="@{/}" class=" item">Accueil</a>
+                <a  th:href="@{/film_list}" id="film" class="active item">Films</a>
+                <a th:href="@{/actor_list}" class="item">Acteurs</a>
                 <a class="item">Contact</a>
                 <div class="right item">
-                    <a class="ui inverted button">S'identifier</a>
-                    <a class="ui inverted button">S'inscrire</a>
+                    <a class="ui inverted teal button">S'identifier</a>
+                    <a style="margin-left: 10px;" class="ui inverted teal button">S'inscrire</a>
                 </div>
             </div>
         </div>
 </div>
-    <h4 class="ui horizontal divider header">
+    <h4 id="separateur-film" class="ui horizontal divider header">
         <i class="tag icon"></i>
         Liste des films
     </h4>
-<div class="ui special cards">
+<!--<div class="ui special cards">
     <div class="card" th:each=" films : ${films}">
         <div class="blurring dimmable image">
             <div class="ui dimmer">
@@ -51,13 +41,13 @@
                     </div>
                 </div>
             </div>
-            <img th:src="@{'/affiche/'+ ${films.image_path}}">
+            &lt;!&ndash;<img th:src="@{'/affiche/'+ ${films.image_path}}">&ndash;&gt;
         </div>
         <div class="content" >
             <a class="header" th:text="${films.title}">Team Fu</a>
-            <div class="meta">
+   &lt;!&ndash;         <div class="meta">
                 <span class="date" th:text="${films.film_director}">Created in Sep 2014</span>
-            </div>
+        </div>&ndash;&gt;
         </div>
         <div class="extra content">
             <i class="users icon"></i>
@@ -67,6 +57,28 @@
         </div>
     </div>
 </div>
+</div>-->
+<table class="ui teal table" >
+    <thead>
+    <tr><th>Id</th>
+        <th>titre</th>
+        <th>Réalisateur</th>
+        <th>Date de sortie</th>
+        <th>Détail</th>
+    </tr>
+    </thead>
+    <tbody th:each=" film : ${films}" >
+    <tr>
+
+        <td th:text="${film.id}">200</td>
+        <td th:text="${film.title}">0g</td>
+        <td  th:text="${film.director.givenname} +' '+ ${film.director.surname}">0g</td>
+        <td th:text="${film.releaseDate}">0g</td>
+        <td><button class="ui teal button">Voir la fiche de la personne</button></td>
+    </tr>
+
+    </tbody>
+</table>
 </div>
     <script src="webjars/Semantic-UI/2.4.1/semantic.min.js"></script>
     <script src="webjars/jquery/3.3.1/src/jquery.js"></script>

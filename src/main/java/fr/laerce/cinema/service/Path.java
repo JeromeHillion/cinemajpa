@@ -7,22 +7,22 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties(prefix = "cinema.path")
 @Validated
 public class Path {
-    private String affiche;
-    private String personne;
+    private String image_path;
+    private String person;
 
-    public String getAffiche() {
-        return affiche;
+    public String getimage_path() {
+        return image_path;
     }
 
-    public void setAffiche(String affiche) {
-        this.affiche = affiche;
+    public void setimage_path(String image_path) {
+        this.image_path = image_path;
     }
 
-    public String getPersonne() {
-        return personne;
+    public String getperson() {
+        return person;
     }
 
-    public void setPersonne(String personne) {
-        this.personne = personne;
+    public void setperson(String person) {
+        this.person = person;
     }
 }

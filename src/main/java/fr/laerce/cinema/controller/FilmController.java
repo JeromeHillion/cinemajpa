@@ -2,11 +2,8 @@ package fr.laerce.cinema.controller;
 
 
 import fr.laerce.cinema.dao.FilmDao;
-import fr.laerce.cinema.dao.PersonneDao;
-import fr.laerce.cinema.dao.RoleDao;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -28,17 +24,11 @@ public class FilmController {
 
     @Autowired
     FilmDao filmDao;
-    
-    @Autowired
-    PersonneDao personneDao;
-    
-    @Autowired
-    RoleDao roleDao;
 
    
     @GetMapping("/film_list")
     public String film_list(Model model){
-        model.addAttribute("films", filmDao.findAll());
+        model.addAttribute("films", filmDao.findAllByOrderByIdAsc());
         return "film/film_list";
     }
 
@@ -46,7 +36,7 @@ public class FilmController {
   
      public String detail(Model m, @PathVariable("id") Long id){
         m.addAttribute ("film",filmDao.findById (id).get ());
-        m.addAttribute ("role", filmDao.findById (id).get ().getPosts ());
+
 
         return "film/film_detail";
     }

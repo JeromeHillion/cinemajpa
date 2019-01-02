@@ -25,14 +25,14 @@
     <!--   <h1>Hello World</h1>-->
    <div class="bd-example bd-example-images">
        <figure class="thumbnail" style="padding: 20px;">
-    <img style="width: 161px; height: 217.15px" th:src="@{'/person/photo/'+${personne.prenom + personne.nom}}" class="rounded float-left" alt="...">
+    <img style="width: 161px; height: 217.15px" th:src="@{'/person/photo/'+${person.prenom + person.nom}}" class="rounded float-left" alt="...">
        </figure>
     </div>
     <div class="description" style="margin-top: -40px;">
-   <span style="margin-left: 50px;">Id : </span><q th:text="${personne.id}" style="color: #17A2B8"></q><br>
-        <span style="margin-left: 50px;">Prénom : </span><q th:text="${personne.prenom}" style="color: #17A2B8"></q><br>
-        <span style="margin-left: 50px;">Nom : </span><q th:text="${personne.nom}" style="color: #17A2B8"></q><br>
-        <span style="margin-left: 50px;">Date de naissance : </span><q th:text="${personne.naissance}" style="color: #17A2B8"></q>
+   <span style="margin-left: 50px;">Id : </span><q th:text="${person.id}" style="color: #17A2B8"></q><br>
+        <span style="margin-left: 50px;">Prénom : </span><q th:text="${person.prenom}" style="color: #17A2B8"></q><br>
+        <span style="margin-left: 50px;">Nom : </span><q th:text="${person.nom}" style="color: #17A2B8"></q><br>
+        <span style="margin-left: 50px;">Date de naissance : </span><q th:text="${person.naissance}" style="color: #17A2B8"></q>
     </div>
 </div>
 

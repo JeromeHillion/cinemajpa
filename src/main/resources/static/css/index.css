@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 body{
     background-color: #ECEFF1;
-    padding: 20px;
+
 
 }
 .segment{
@@ -12,4 +12,8 @@ body{
     font-weight: bold;
     font-size: 30px;
     font-family: 'Permanent Marker', cursive;
+}
+#accueil {
+    border-bottom-color: #54FFFF !important;
+    color:#54FFFF !important;
 }

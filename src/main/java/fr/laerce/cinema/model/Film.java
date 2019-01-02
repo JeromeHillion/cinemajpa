@@ -1,4 +1,6 @@
 package fr.laerce.cinema.model;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -6,20 +8,45 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "films")
+@Table(name="films")
 public class Film {
-    private long id;
-    private  String title;
-    private Double rating;
-    private String image_path;
-    private String summary;
-    private Personne film_director;
-    private Set<Role> posts;
-    private List<Genre> genreFilm = new ArrayList<Genre>();
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    private long id;
+    @Basic
+    @Column(name = "title", nullable = true, length = 50)
+    private String title;
+    @Basic
+    @Column(name = "rating", nullable = true, precision = 1)
+    private BigDecimal rating;
+    @Basic
+    @Column(name = "image_path", nullable = true, length = 120)
+    private String imagePath;
+    @Basic
+    @Column(name = "summary", nullable = true, length = -1)
+    private String summary;
+    @Basic
+    @Column(name="release_date", nullable = true)
+    private LocalDate releaseDate;
+    @ManyToOne
+    @JoinColumn(name ="film_director")
+    private Person director;
+
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Play> roles;
+
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name="film_genre", joinColumns = @JoinColumn(name="film_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<Genre> genres;
+
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews;
+
 
     public long getId() {
         return id;
@@ -28,18 +55,7 @@ public class Film {
     public void setId(long id) {
         this.id = id;
     }
-    
-    @OneToMany(mappedBy = "film")
-    public Set<Role> getPosts() {
-        return posts;
-    }
 
-    public void setPosts(Set<Role> posts) {
-        this.posts = posts;
-    }
-    
-    @Basic
-    @Column(name = "title", nullable = false, length = 60)
     public String getTitle() {
         return title;
     }
@@ -47,31 +63,22 @@ public class Film {
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    @Basic
-    @Column(name = "rating", nullable = true)
 
-    public Double getRating() {
+    public BigDecimal getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
-    
-    @Basic
-    @Column(name = "image_path", nullable = true, length = 120)
-    
-    public String getImage_path() {
-        return image_path;
+
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
-    
-    @Basic
-    @Column(name = "summary", nullable = true, length = 80)
 
     public String getSummary() {
         return summary;
@@ -80,41 +87,71 @@ public class Film {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    
-    @ManyToOne
-    @JoinColumn(name = "film_director")
 
-    public Personne getFilm_director() {
-        return film_director;
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setFilm_director(Personne film_director) {
-        this.film_director = film_director;
-    }
-    
-    @ManyToMany(mappedBy = "listFilm")
-    public List<Genre> getGenreFilm() {
-        return genreFilm;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public void setGenreFilm(List<Genre> genreFilm) {
-        this.genreFilm = genreFilm;
+    public Person getDirector() {
+        return director;
     }
-     @Override
+
+    public void setDirector(Person person) {
+        this.director = person;
+    }
+
+    public Set<Play> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Play> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Film film = (Film) o;
 
         if (id != film.id) return false;
+        if (title != null ? !title.equals(film.title) : film.title != null) return false;
+        if (rating != null ? !rating.equals(film.rating) : film.rating != null) return false;
+        if (imagePath != null ? !imagePath.equals(film.imagePath) : film.imagePath != null) return false;
+        if (summary != null ? !summary.equals(film.summary) : film.summary != null) return false;
+
         return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash (getId ());
-}
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
+        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
+        result = 31 * result + (summary != null ? summary.hashCode() : 0);
+        return result;
     }
-
-
+}
