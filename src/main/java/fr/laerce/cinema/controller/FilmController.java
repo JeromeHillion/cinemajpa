@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+
 /** On indique à springboot qu'il s'agit d'une classe controller**/
 @Controller
 public class FilmController {
@@ -31,43 +33,47 @@ public class FilmController {
         model.addAttribute("films", filmDao.findAllByOrderByIdAsc());
         return "film/film_list";
     }
+    @GetMapping("/film_detail/")
+
+    public String film_detail(Model model){
+        model.addAttribute ("film",filmDao.findAll());
+        return "film/film_detail";
+    }
 
     @GetMapping("/film_detail/{id}")
   
-     public String detail(Model m, @PathVariable("id") Long id){
-        m.addAttribute ("film",filmDao.findById (id).get ());
+     public String film_detail_id(Model model, @PathVariable("id") Long id){
+        model.addAttribute ("film",filmDao.findById (id).get ());
 
 
         return "film/film_detail";
     }
 
-    //deuxieme methode pour afficher  les images
-    /**Gestion de l'afichage des affiches de film**/
-//    @GetMapping("/poster/{titre}")
-//    public void affiche(HttpServletRequest request, HttpServletResponse response, @PathVariable("titre") String titre) throws IOException{
-//        String filename = "C:\\Users\\CDI\\Documents\\images\\poster\\"+titre;
-//
-//        /**UTILITAIRE POUR IMPORTER DES IMAGES A PARTIR D'UN FOLDER EXTERNE A L'APPLICATION**/
-//        String mime = request.getServletContext().getMimeType(filename);
-//        if (mime == null) {
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            return;
-//        }
-//        response.setContentType(mime);
-//        File file = new File(filename);
-//        response.setContentLength((int) file.length());
-//        FileInputStream in = new FileInputStream(file);
-//        OutputStream out = response.getOutputStream();
-//        byte[] buf = new byte[1024];
-//        int count = 0;
-//        while ((count = in.read(buf)) >= 0) {
-//            out.write(buf, 0, count);
-//        }
-//        out.close();
-//        in.close();
-//    }
+    @GetMapping("/film_detail{image_path}")
+    public void image_path(HttpServletRequest request, HttpServletResponse response, String image_path) throws IOException{
+        String filename = "C:\\Users\\CDI\\IdeaProjects\\cinemajpa\\src\\main\\resources\\static\\images\\affiches" +image_path;
 
-// @Value( "${url}" )
+       /**UTILITAIRE POUR IMPORTER DES IMAGES A PARTIR D'UN FOLDER EXTERNE A L'APPLICATION**/
+        String mime = request.getServletContext().getMimeType(filename);
+        if (mime == null) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }
+        response.setContentType(mime);
+        File file = new File(filename);
+        response.setContentLength((int) file.length());
+        FileInputStream in = new FileInputStream(file);
+        OutputStream out = response.getOutputStream();
+        byte[] buf = new byte[1024];
+        int count = 0;
+        while ((count = in.read(buf)) >= 0) {
+            out.write(buf, 0, count);
+        }
+        out.close();
+        in.close();
+    }
+
+/*// @Value( "${url}" )
      String url;
     @GetMapping("/affiche/{image_path}")
     public ResponseEntity<byte[]> getImageAsResponseEntity (HttpServletRequest request, HttpServletResponse response, @PathVariable("image_path") String image_path) {
@@ -85,7 +91,7 @@ public class FilmController {
             e.printStackTrace ();
         }
        return null;
-}
+}*/
     @GetMapping("/film_form")
     public String film_form(Model model){
         model.addAttribute("films", filmDao.findAll());

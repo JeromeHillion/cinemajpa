@@ -32,4 +32,5 @@ public class PlayController {
         model.addAttribute("play", playDao.findById(id));
         return "role/list";
     }
+
 }

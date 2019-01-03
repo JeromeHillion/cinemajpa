@@ -34,9 +34,7 @@
         </div>
 
         <div class="ui text container">
-            <h1 class="ui inverted header">
-                CINEMAN
-            </h1>
+            <h2 class="ui center aligned icon header" id="titre"><i class="film icon" id="film icon"></i>CINEMAN </h2>
             <h2>“Le cinéma, c’est un oeil ouvert sur le monde.”</h2>
             <div class="ui inverted teal button" ><a th:href="@{/film_list}">Voir les films</a><i class="right arrow icon"></i></div>
         </div>
@@ -54,7 +52,7 @@
                     <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
                 </div>
                 <div class="six wide right floated column">
-                    <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
+                    <img th:src="@{/images/illustration/cineman_favicon.jpg}" class="ui large bordered rounded image">
                 </div>
             </div>
 

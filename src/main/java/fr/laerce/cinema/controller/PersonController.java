@@ -32,7 +32,14 @@ public class PersonController {
         model.addAttribute("person", personneDao.findAll());
 
     }*/
+   @GetMapping("/actor_detail/{id}")
 
+   public String film_detail_id(Model model, @PathVariable("id") Long id){
+       model.addAttribute ("personnes",personDao.findById (id).get ());
+
+
+       return "person/actor_detail";
+   }
 
     /** Gestion de l'affichage de l'image**/
 

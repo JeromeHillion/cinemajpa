@@ -7,7 +7,7 @@
 
     <title>Liste des personnes</title>
 </head>
-<div>
+
 
 <!-- Page Contents -->
 <div class="pusher">
@@ -16,11 +16,11 @@
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
                 <a class="toc item">
-                    <i class="sidebar icon"></i>
+                    <cite id="titre">CINEMAN</cite>
                 </a>
                 <a th:href="@{/}" class=" item">Accueil</a>
                 <a  th:href="@{/film_list}" class="item">Films</a>
-                <a th:href="@{/actor_list}" id="acteurs" class=" active item">Personnes</a>
+                <a th:href="@{/actor_list}" id="acteurs" class=" active item">Acteurs</a>
                 <a class="item">Contact</a>
                 <div class="right item">
                     <a class="ui inverted teal button">S'identifier</a>
@@ -56,7 +56,7 @@
     <td th:text="${personnes.givenname}">0g</td>
     <td th:text="${personnes.surname}">0g</td>
     <td th:text="${personnes.birthday}">0g</td>
-    <td><button class="ui teal button">Voir la fiche de la personne</button></td>
+    <td><a class="ui teal button" th:href="@{'actor_detail/' +${personnes.id}}">Voir la fiche de la personne</a></td>
 </tr>
 
 </tbody>

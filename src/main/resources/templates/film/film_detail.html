@@ -4,68 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <th:block th:insert="fragments/head.html :: head"> </th:block>
-    <link href="../static/css/index.css" th:href="@{/css/film_detail.css}" rel="stylesheet">
+    <link href="../static/css/film_detail.css" th:href="@{/css/film_detail.css}" rel="stylesheet">
 
     <title>Title</title>
     
 </head>
-<body>
-<div class="ui inverted menu">
-      </a>
-    <a class="item cineman">
-          CINEMAN
-    </a>
-    <a class="item">
-        <i class="home icon"></i>    Accueil
-    </a>
-    <a class="item">
-        <i class="users icon"></i>Acteurs
-    </a>
-    <a class="item">
-       <i class="film icon"></i> Films
-    </a>
-    <a class="item">
-       <i class="edit icon"></i> Genre
-    </a>
-</div><!--
-  <div class="ui grid">
-        <div class="three wide column" th:each="film : ${film}">
-            <img class="ui wireframe image" th:src="@{'/poster/' +${film.affiche}">    
-        </div><!--
-        -->
-<!--        <div class="ten wide column">
-            <span th:text="${film.notation}"></span>
-        </div>-->
-<!--    </div>
--->
-<!--<div class="ui internally celled grid" >
-  <div class="row">
-    <div class="three wide column" th:each="film : ${film}">
-      <img th:src="@{'/affiche/' +${film.getImage_path()}}">
-    </div>
-    <div class="ten wide column">
-        <h1 th:text="${film.title}"></h1>
-        <h3 th:text="${'Note : '+film.rating}"></h3>
-        <h3 th:each="genre:${film.getGenreFilm()}" th:text="'Genre : '+${genre.name}"></h3>
-        <h2>Résumé du film : </h2>
-      <p th:text="${film.summary}"></p>
-    </div>
+<body th:each="film : ${film}">
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
 
-  </div>
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <cite id="titre">CINEMAN</cite>
+                </a>
+                <a th:href="@{/}" class=" item">Accueil</a>
+                <a  th:href="@{/film_list}" class="item">Films</a>
+                <a th:href="@{/actor_list}" id="acteurs" class="item">Acteurs</a>
+                <a class="item">Contact</a>
+                <div class="right item">
+                    <a class="ui inverted teal button">S'identifier</a>
+                    <a style="margin-left: 10px;" class="ui inverted teal button">S'inscrire</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="ui very relaxed items">
-  <div class="item">
-    <div class="image">
-      <img src="/images/wireframe/image.png">
-    </div>
-    <div class="content">
-      <a class="ui header" href="#link">Link Header</a>
-      <div class="description">
-        <p>Ut imperdiet dignissim feugiat. Phasellus tristique odio eu justo dapibus, nec rutrum ipsum luctus. Ut posuere nec tortor eu ullamcorper. <a href="#link">Etiam pellentesque</a> tincidunt tortor, non sagittis nibh pretium sit amet. Sed neque dolor, blandit eu ornare vel, lacinia porttitor nisi. Vestibulum sit amet diam rhoncus, consectetur enim sit amet, interdum mauris. Praesent feugiat finibus quam, porttitor varius est egestas id.</p>
-      </div>
-    </div>
-  </div>-->
+<h3 class="ui horizontal divider header"><i class="play circle outline icon"></i>Détails du film</h3>
 
-<th:block th:insert="fragments/script.html :: script"> </th:block>
+<div class="ui items">
+    <div class="item">
+        <div class="image">
+            <img  th:src="'/images/affiches/'+${film.imagePath}">
+        </div>
+        <div class="content">
+           <h1><a th:text="${film.title}" class="header">En-tête</a></h1>
+            <div class="meta">
+              <h3> Réalisateur : <span th:text="${film.director.givenname} +' '+ ${film.director.surname}">Description</span> </h3>
+            </div>
+            <div  class="extra"> <h4> <span id="acteur_principaux"> Acteurs principaux :</span> <a href="#"><span th:each="play : ${film.roles}" th:text="${play.actor.givenname} +' '+ ${play.actor.surname}+', '"></span></a></h4></span> </div>
+            <div  class="extra"><h4> <span id="genre">Genre :</span> <span th:each="genre :${film.genres}" th:text="${genre.name}+', '"> , </span></h4></div>
+            <br>
+            <div class="description">
+                <h3 class="ui horizontal divider header"><i class="play circle outline icon"></i>Résumé du film</h3>
+                <p th:text="${film.summary}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius et modi quisquam ratione! Asperiores corporis, cum, doloribus enim error esse eum ex fuga id minima pariatur, possimus quaerat ratione veritatis?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

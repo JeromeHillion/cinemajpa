@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 body{
     background-color: #ECEFF1;
+    font-size: 18px;
 
 
 }
@@ -13,13 +14,22 @@ body{
     font-size: 30px;
     font-family: 'Permanent Marker', cursive;
 }
-#accueil {
-    border-bottom-color: #54FFFF !important;
-    color:#54FFFF !important;
+h1, h2{
+    color: #00695C;
+}
+img{
+    width: 215px !important;
+    height: 290px !important;
+    margin-left: 90px;
+}
+.content{
+    margin-left: 200px !important;
+    margin-right: 200px !important;
+}
+#genre,#acteur_principaux,i{
+    color:#009C95 !important;
 }
 #titre{
-    color: #ffffff;
-}
-#film\ icon{
     color:#54FFFF !important;
+    font-size: 30px;
 }

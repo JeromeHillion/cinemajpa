@@ -14,7 +14,7 @@
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
                 <a class="toc item">
-                    <i class="sidebar icon"></i>
+                    <cite id="titre">CINEMAN</cite>
                 </a>
                 <a th:href="@{/}" class=" item">Accueil</a>
                 <a  th:href="@{/film_list}" id="film" class="active item">Films</a>
@@ -31,33 +31,6 @@
         <i class="tag icon"></i>
         Liste des films
     </h4>
-<!--<div class="ui special cards">
-    <div class="card" th:each=" films : ${films}">
-        <div class="blurring dimmable image">
-            <div class="ui dimmer">
-                <div class="content">
-                    <div class="center">
-                        <div class="ui inverted button">Add Friend</div>
-                    </div>
-                </div>
-            </div>
-            &lt;!&ndash;<img th:src="@{'/affiche/'+ ${films.image_path}}">&ndash;&gt;
-        </div>
-        <div class="content" >
-            <a class="header" th:text="${films.title}">Team Fu</a>
-   &lt;!&ndash;         <div class="meta">
-                <span class="date" th:text="${films.film_director}">Created in Sep 2014</span>
-        </div>&ndash;&gt;
-        </div>
-        <div class="extra content">
-            <i class="users icon"></i>
-            <a th:text="${films.rating}">
-                2 Members
-            </a>
-        </div>
-    </div>
-</div>
-</div>-->
 <table class="ui teal table" >
     <thead>
     <tr><th>Id</th>
@@ -74,7 +47,7 @@
         <td th:text="${film.title}">0g</td>
         <td  th:text="${film.director.givenname} +' '+ ${film.director.surname}">0g</td>
         <td th:text="${film.releaseDate}">0g</td>
-        <td><button class="ui teal button">Voir la fiche de la personne</button></td>
+        <td><a class="ui teal button" th:href="@{'/film_detail/'+${film.id}}">Voir la fiche du film</a></td>
     </tr>
 
     </tbody>
