@@ -9,39 +9,34 @@
 </head>
 <body>
 <div class="ui stackable menu nav_menu">
-
-    <div class="item">
-<!--
-        <img src="../static/images/illustration/movie_icon.jpg" th:src="@{/images/illustration/movie_icon.jpg}">
--->
-    </div>
+ <h1>Gestionnaire</h1>
 </div>
 <div class="ui grid">
     <div class="ui vertical menu">
         <div class="item">
-            <div class="header">Products</div>
-            <div class="menu cine_menu">
-                <a class="item">Enterprise</a>
-                <a class="item">Client</a>
+            <div class="header">Films<a onclick="afficher()"> <i class="angle down icon"></i></a></div>
+            <div class="menu cine_menu" id="menu_lateral">
+                <a class="item">Ajouter un film</a>
+                <a class="item">Liste des films</a>
+                <a class="item">Affiches</a>
             </div>
         </div>
         <div class="item">
-            <div class="header">CMS Solutions</div>
-            <div class="menu cine_menu ">
+            <div class="header">Genre<a> <i class="angle down icon"></i> </a></div>
+            <div class="menu cine_menu " >
                 <a class="item">Rails</a>
-                <a class="item">Python</a>
-                <a class="item">PHP</a>
+
             </div>
         </div>
         <div class="item">
-            <div class="header">Hosting</div>
+            <div class="header">Role <a><i class="angle down icon" id="flechebas"></i></a></div>
             <div class="menu cine_menu">
                 <a class="item">Partagé</a>
-                <a class="item">Dedicated</a>
+
             </div>
         </div>
         <div class="item">
-            <div class="header">Support</div>
+            <div class="header">Compte utilisateur <a> <i class="angle down icon"></i></a></div>
             <div class="menu cine_menu">
                 <a class="item">E-mail Support</a>
                 <a class="item">FAQs</a>
@@ -49,97 +44,75 @@
         </div>
     </div>
     <div class="twelve wide stretched column">
-        <div class="grid">
 
-            <a class="item titre_ajt_film">Ajouter un film </a>
-
-        </div>
         <form class="ui form">
-            <h4 class="ui dividing header">Adresse de livraison</h4>
+            <div class="grid">
+
+                <h1 class="item titre_ajt_film titre">Ajouter un film </h1>
+
+            </div>
             <div class="field">
-                <label>Name</label>
+                <h3 class="ui dividing header">Inserer les détails du film</h3>
+                <label>Titre</label>
                 <div class="two fields">
-                    <div class="field">
+
                         <input type="text" class="champtitre" name="shipping[first-name]" placeholder="First Name">
     </div>
-
-</div>
-
-</div>
-
-   <!-- <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-</div>
-<div class="container">
-    <fieldset>
-        <legend>Ajout d'un film</legend>
-        <form>
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationDefault01">Id</label>
-                    <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="id" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationDefault02">Titre</label>
-                    <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="titre" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationDefaultUsername">Notation</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="validationDefaultUsername" placeholder="note" aria-describedby="inputGroupPrepend2" required>
+            </div>
+                    <div class="field">
+                        <label> Date de sortie</label>
+                        <div class="two fields">
+                        <input type="text" class="champdate" name="shipping[first-name]" placeholder="First Name">
+    </div>
                     </div>
+            <div class="field">
+                <label> Réalisateur</label>
+                <div class="two fields">
+                    <input type="text" class="champreal" name="shipping[first-name]" placeholder="First Name">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="input-group mb-3">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">ajouter une affiche</label>
-                    </div>
+            <div class="field">
+                <label> Genre</label>
+                <div class="two fields">
+                    <select class="ui fluid dropdown champgenre">
+                        <option value="">genre</option>
+                    </select>
+
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault04">Résumé</label>
-                    <input type="text" class="form-control" id="validationDefault04" placeholder="résumé" required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault05">Réalisateur</label>
-                    <input type="text" class="form-control" id="validationDefault05" placeholder="réalisateur" required>
+
+            </div>
+
+            <div class="field">
+                <label> Affiche</label>
+                <div class="two fields">
+                    <input type="file" class="champtitre" name="shipping[first-name]" placeholder="First Name">
                 </div>
             </div>
-            <button class="btn btn-info" type="submit">Ajouter</button>
+            <div class="field">
+                <label> Note</label>
+                <div class="two fields">
+                    <input type="number" class="champtitre" name="shipping[first-name]" placeholder="First Name">
+                </div>
+            </div>
+            <div class="field">
+                <label> Résumé du film</label>
+                <div class="two fields">
+                    <textarea  class="champtitre" name="shipping[first-name]" placeholder="First Name"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <button class="ui teal button">Ajouter</button>
+            </div>
+            </div>
         </form>
-    </fieldset>
+    </div>
 </div>
-<hr style="background-color: #17A2B8;">
-<div class="container">
 
-    <h2> Liste des Films</h2>
-    <table class="table table-sm">
-        <thead>
-        <tr class="bg-info">
-            <th class="bg-info" style="; color: #fff;">id</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">titre</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">note</th>
-            <th class="bg-info" style="border-left: solid 1px #ccc; color: #fff;">Résumé du film</th>
-           </tr>
-        </thead>
-        <tbody>
-        <tr th:each="film : ${films}">
-            <td th:text="${film.id}" style="border: solid 1px #ccc;border-right: solid 1px #ccc"></td>
-            <td th:text="${film.titre}" style="border: solid 1px #ccc">The table body</td>
-            <td th:text="${film.affiche}" style="border: solid 1px #ccc;">The table body</td>
-            <td style="border: solid 1px #ccc;"><a th:href="@{'/film'}" type="button" class="btn btn-info">Supprimer</a></td>
 
-        </tr>
-        </tbody>
-    </table>
-
-</div>-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script th:src="@{/js/ajout_film.js}"></script>
 </body>
 </html>
