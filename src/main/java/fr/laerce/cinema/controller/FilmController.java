@@ -72,6 +72,29 @@ public class FilmController {
         out.close();
         in.close();
     }
+    @GetMapping("/film_form{illustration}")
+    public void illustration(HttpServletRequest request, HttpServletResponse response, String illustration) throws IOException{
+        String filename = "C:\\Users\\CDI\\IdeaProjects\\cinemajpa\\src\\main\\resources\\static\\images\\illustration\\illustration" + illustration;
+
+        /**UTILITAIRE POUR IMPORTER DES IMAGES A PARTIR D'UN FOLDER EXTERNE A L'APPLICATION**/
+        String mime = request.getServletContext().getMimeType(filename);
+        if (mime == null) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }
+        response.setContentType(mime);
+        File file = new File(filename);
+        response.setContentLength((int) file.length());
+        FileInputStream in = new FileInputStream(file);
+        OutputStream out = response.getOutputStream();
+        byte[] buf = new byte[1024];
+        int count = 0;
+        while ((count = in.read(buf)) >= 0) {
+            out.write(buf, 0, count);
+        }
+        out.close();
+        in.close();
+    }
 
 /*// @Value( "${url}" )
      String url;
