@@ -1,101 +1,73 @@
 package fr.laerce.cinema.controller;
 
 
+import fr.laerce.cinema.dao.FilmDao;
 import fr.laerce.cinema.dao.PersonDao;
+import fr.laerce.cinema.dao.RoleDao;
+import fr.laerce.cinema.model.Person;
+import fr.laerce.cinema.model.Play;
+import fr.laerce.cinema.service.ImageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 
-/** On indique à springboot qu'il s'agit d'une classe controller**/
 @Controller
+@RequestMapping(value = "/person")
 public class PersonController {
+    @Autowired
+    PersonDao personneDao;
 
     @Autowired
-    PersonDao personDao;
+    RoleDao roleDao;
 
+    @Autowired
+    FilmDao filmDao;
 
+    @Autowired
+    ImageManager imm;
 
-  /*  @Autowired
-    ImageManager imm;*/
-
-    @GetMapping("/actor_list")
-    public String actor_list(Model model) {
-        /*On mappe la liste par ordre alphabétique pour la vue*/
-        model.addAttribute("personnes", personDao.findAllByOrderByIdAsc());
-        return "person/actor_list";
+    @GetMapping("/list")
+    public String list(Model model){
+        model.addAttribute("persons", personneDao.findAll());
+        return "person/list";
     }
 
-   /* @GetMapping("/actor_detail/")
-    public String detail(Model model) {
-        model.addAttribute("person", personneDao.findAll());
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable("id") long id, Model model){
+        model.addAttribute("person", personneDao.findById(id).get());
+        return "person/detail";
+    }
 
-    }*/
-   @GetMapping("/actor_detail/{id}")
+    @GetMapping("/mod/{id}")
+    public String mod(@PathVariable("id")long id, Model model){
+        model.addAttribute("person", personneDao.findById(id).get());
+        model.addAttribute("newrole", new Play());
+        return "person/form";
+    }
 
-   public String film_detail_id(Model model, @PathVariable("id") Long id){
-       model.addAttribute ("personnes",personDao.findById (id).get ());
+    @GetMapping("/add")
+    public String add(Model model){
+        Person person = new Person();
+        model.addAttribute("person", person);
+        return "person/form";
+    }
 
+    @PostMapping("/add")
+    public String submit(@RequestParam("photo") MultipartFile file, @ModelAttribute Person person){
 
-       return "person/actor_detail";
-   }
-
-    /** Gestion de l'affichage de l'image**/
-
-//    @Value( "${url}" )
-//    private String url;
-//    //deuxieme methode pour affichezr  image
-//    @GetMapping("/affiche/{id}")
-//    public ResponseEntity<byte[]> getImageAsResponseEntity (HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
-//        try {
-//            HttpHeaders headers = new HttpHeaders ();
-//            String filename=url+id;
-//            File i = new File (filename);
-//            FileInputStream in = new FileInputStream(i);
-//            byte[] media = IOUtils.toByteArray (in);
-//            headers.setCacheControl (CacheControl.noCache ().getHeaderValue ());
-//
-//            ResponseEntity<byte[]> responseEntity = new ResponseEntity<> (media, headers, HttpStatus.OK);
-//            return responseEntity;
-//        } catch (IOException e) {
-//            e.printStackTrace ();
-//        }
-//       return null;
-// }
-    //on copie/colle la methode pour le portrait des acteur
-//    @Value( "${url2}" )
-/*
-    private String url2;
-    //que l'on mappe sur image/id id etant le nom brut de l'image
-    @GetMapping("/image/{id}")
-    public ResponseEntity<byte[]> getImageAsResponseEntity2 (HttpServletRequest request, HttpServletResponse response, @PathVariable("id") String id) {
-        try {
-            HttpHeaders headers = new HttpHeaders ();
-            String filename=url2+id;
-            File i = new File (filename);
-            FileInputStream in = new FileInputStream(i);
-            byte[] media = IOUtils.toByteArray (in);
-            headers.setCacheControl (CacheControl.noCache().getHeaderValue());
-
-            ResponseEntity<byte[]> responseEntity = new ResponseEntity<> (media, headers, HttpStatus.OK);
-            return responseEntity;
-        } catch (IOException e) {
-            e.printStackTrace ();
+        if(file.getContentType().equalsIgnoreCase("image/jpeg")){
+            try {
+                imm.savePhoto(person, file.getInputStream());
+            } catch (IOException ioe){
+                System.out.println("Erreur lecture : "+ioe.getMessage());
+            }
         }
-        return null;
+        personneDao.save(person);
+        return "redirect:/person/list";
     }
-    @GetMapping("/acteur/{id}")
-    //on recupere id grace à pathvariable
-    public String acteur(Model m, @PathVariable("id") String id){
-        //on envoie a acteur la personne concernée grace a la methode getbyaf et id qui est le nom de l'image
-        m.addAttribute ("actor", personneDao.findAllByImage_path (id));
-        return"acteur";}
+
 }
-
-*/
-}
-
-
-
-

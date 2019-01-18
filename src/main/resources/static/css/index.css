@@ -17,9 +17,17 @@ body{
     border-bottom-color: #54FFFF !important;
     color:#54FFFF !important;
 }
+
+#gestion{
+    margin-right: -120px;
+}
 #titre{
     color: #ffffff;
 }
 #film\ icon{
     color:#54FFFF !important;
+}
+#h4_gestion{
+    color: #fff;
+    font-size: 10px;
 }

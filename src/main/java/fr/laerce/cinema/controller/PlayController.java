@@ -2,7 +2,7 @@ package fr.laerce.cinema.controller;
 
 import fr.laerce.cinema.dao.FilmDao;
 import fr.laerce.cinema.dao.PersonDao;
-import fr.laerce.cinema.dao.PlayDao;
+import fr.laerce.cinema.dao.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/role")
 public class PlayController {
     @Autowired
-    PlayDao playDao;
+    RoleDao roleDao;
 
     @Autowired
     PersonDao personDao;
@@ -24,12 +24,12 @@ public class PlayController {
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("play", playDao.findAllByOrderByIdAsc());
+        model.addAttribute("play", roleDao.findAllByOrderByIdAsc());
         return "role/list";
     }
     @GetMapping("/role_list/{id}")
     public String detail(Model model, @PathVariable("id") Long id){
-        model.addAttribute("play", playDao.findById(id));
+        model.addAttribute("play", roleDao.findById(id));
         return "role/list";
     }
 
