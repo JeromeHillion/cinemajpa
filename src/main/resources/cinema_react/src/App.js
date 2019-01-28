@@ -35,7 +35,8 @@ class App extends Component {
         })
 
         this.state = {rows : moviesRows}*/
-  this.performSearch("Naruto")
+  this.performSearch("Star Wars ")
+
     }
 
     performSearch (searchTerm){

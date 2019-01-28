@@ -15,6 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.zip.GZIPInputStream;
+
 @Controller
 @RequestMapping("/film")
 public class FilmController {
@@ -98,5 +105,25 @@ public class FilmController {
         return "redirect:/film/mod/" + role.getFilm().getId();
     }
 
+    @GetMapping("/peupler")
+    public String modRole( Model model) {
+
+        try {
+            String filename = "http://files.tmdb.org/p/exports/movie_ids_01_28_2019.json.gz";
+            InputStream is = new URL(filename).openStream();
+            InputStream gz = new GZIPInputStream(is);
+            InputStream bufferedIS = new BufferedInputStream(gz);
+
+            System.out.println(bufferedIS.read());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Iterable<Film> films = filmManager.getAll();
+        model.addAttribute("films", films);
+        return "film/list";
+    }
 
 }
