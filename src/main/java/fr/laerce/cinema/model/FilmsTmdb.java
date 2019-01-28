@@ -1,12 +1,15 @@
 package fr.laerce.cinema.model;
 
 
+import org.checkerframework.common.aliasing.qual.Unique;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tmdb_movies")
 public class FilmsTmdb {
+
 
     @Id
     @NotNull
@@ -17,11 +20,15 @@ public class FilmsTmdb {
     private String title;
 
     @NotNull
-    private long tmdbid;
+    @Unique
+    private long idtmdb;
 
-    public FilmsTmdb( String title, long tmdbid) {
+    public FilmsTmdb() {
+    }
+
+    public FilmsTmdb(String title, long idtmdb) {
         this.title = title;
-        this.tmdbid = tmdbid;
+        this.idtmdb = idtmdb;
     }
 
     public long getId() {
@@ -40,12 +47,11 @@ public class FilmsTmdb {
         this.title = title;
     }
 
-    public long getTmdbid() {
-        return tmdbid;
+    public long getIdtmdb() {
+        return idtmdb;
     }
 
-    public void setTmdbid(long tmdbid) {
-        this.tmdbid = tmdbid;
+    public void setIdtmdb(long idtmdb) {
+        this.idtmdb = idtmdb;
     }
-
 }
