@@ -12,21 +12,23 @@ public class Person {
     @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "surname", nullable = false, length = 60)
-    private String surname;
-    @Basic
-    @Column(name = "givenname", nullable = true, length = 40)
-    private String givenname;
+    @Column(name = "name", nullable = false, length = 200)
+    private String name;
+
     @Basic
     @Column(name = "birthday", nullable = true)
     private LocalDate birthday;
     @Basic
-    @Column(name = "image_path", nullable = true, length = 80)
-    private String imagePath;
-    @OneToMany(mappedBy = "director")
-    private Set<Film> directedFilms;
-    @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Play> roles;
+    @Column(name = "profile_path", nullable = true, length = 80)
+    private String profile_path;
+   /* @OneToMany(mappedBy = "director")
+    private Set<Film> directedFilms;*/
+    /*@OneToMany(mappedBy = "know_for_department", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Play> roles;*/
+
+    @Basic
+    @Column(name = "know_for_department", nullable = true, length = 80)
+    private String know_for_department;
 
     public long getId() {
         return id;
@@ -36,21 +38,15 @@ public class Person {
         this.id = id;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getName() {
+        return name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setName(String surname) {
+        this.name = name;
     }
 
-    public String getGivenname() {
-        return givenname;
-    }
 
-    public void setGivenname(String givenname) {
-        this.givenname = givenname;
-    }
 
     public LocalDate getBirthday() {
         return birthday;
@@ -60,21 +56,21 @@ public class Person {
         this.birthday = birthYear;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getProfile_path() {
+        return profile_path;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setProfile_path(String imagePath) {
+        this.profile_path = profile_path;
     }
 
-    public Set<Film> getDirectedFilms() {
+    /*public Set<Film> getDirectedFilms() {
         return directedFilms;
     }
 
     public void setDirectedFilms(Set<Film> films) {
         this.directedFilms = films;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -98,10 +94,9 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", nom='" + surname + '\'' +
-                ", prenom='" + givenname + '\'' +
+                ", prénom et nom='" + name + '\'' +
                 ", naissance=" + birthday +
-                ", photoPath='" + imagePath + '\'' +
+                ", photos='" + profile_path + '\'' +
                 '}';
     }
 }

@@ -45,7 +45,7 @@ public class ImageController {
     public @ResponseBody
     byte[]
     photos(@PathVariable("id") Long id) {
-        String photoName = personDao.findById(id).get().getImagePath();
+        String photoName = personDao.findById(id).get().getProfile_path();
         InputStream is = imageManager.retreivePhoto(photoName);
         byte[] image = null;
         try {

@@ -5,14 +5,12 @@ import fr.laerce.cinema.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class PersonManager {
     @Autowired
     PersonDao personDao;
 
-    public List<Person> getAll(){
-        return personDao.findAllByOrderBySurname();
+    public Iterable<Person> getAll(){
+        return personDao.findAll();
     }
 }

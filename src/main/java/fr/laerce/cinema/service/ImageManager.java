@@ -16,7 +16,7 @@ public class ImageManager {
     String path;
 
     public int savePhoto(Person p, InputStream fi){
-        p.setImagePath(save("p", "photos", fi));
+        p.setProfile_path(save("p", "photos", fi));
         return 0;
     }
 

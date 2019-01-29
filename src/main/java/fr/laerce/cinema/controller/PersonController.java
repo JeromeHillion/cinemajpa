@@ -31,8 +31,8 @@ public class PersonController {
     ImageManager imm;
 
     @GetMapping("/list")
-    public String list(Model model){
-        model.addAttribute("persons", personneDao.findAll());
+    public String list( @PathVariable("id") long id, Model model){
+        model.addAttribute("persons", personneDao.findAllById(id));
         return "person/list";
     }
 

@@ -1,9 +1,12 @@
 package fr.laerce.cinema;
 
 import fr.laerce.cinema.service.Path;
+import fr.laerce.cinema.service.TmdbClient;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
@@ -18,7 +21,14 @@ public class CinemaApplication {
     }
 
 
+
+
+    @Bean
+    public CommandLineRunner movieDetail(TmdbClient tc) {
+        return args -> {
+            tc.getMovieByTmdbID(616);
+        };
     }
 
-
+}
 
