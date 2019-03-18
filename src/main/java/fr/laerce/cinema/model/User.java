@@ -1,9 +1,10 @@
 package fr.laerce.cinema.model;
 import javax.persistence.*;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -98,4 +99,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
+
+
 }

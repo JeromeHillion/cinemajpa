@@ -31,3 +31,55 @@ body{
     color: #fff;
     font-size: 10px;
 }
+
+.formInscription{
+    width: 400px ;
+    margin: 0 auto !important;
+    margin-top: -400px !important;
+    height:550px;
+}
+.formInscription > h2{
+    padding: 10px !important;
+}
+.userIconForm{
+    color: #54FFFF;
+    box-shadow: 0em 0em 0em 0.1em #54FFFF inset !important;
+}
+.field{
+    padding: 10px !important;
+}
+.field>label{
+    color: #9E9E9E !important;
+    text-align: center;
+}
+input[type ="text"], input[type ="text"] {
+    box-shadow: inset 0em 0em 2em 0em #ccc !important;
+}
+.btnValider{
+    float: right;
+    margin-right: 10px !important;
+}
+.btnAnnuler{
+    margin-left: 10px !important;
+}
+.btnValider, .btnAnnuler{
+    margin-top: 20px !important;
+}
+.footerSlog{
+    color: #9E9E9E;
+    font-size: 17px !important;
+}
+.footerJe{
+    color: #54ffff;
+    font-size: 17px;
+}
+footer{
+bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+.colFooter{
+    padding: 30px !important;
+    border-left: solid 1px #54ffff;
+    width: 700px !important;
+}

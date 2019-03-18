@@ -12,23 +12,24 @@ public class Person {
     @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "name", nullable = false, length = 200)
+    @Column(name = "surname", nullable = false, length = 200)
     private String name;
+  @Basic
+    @Column(name = "givenname", nullable = false, length = 200)
+    private String givenname;
 
     @Basic
     @Column(name = "birthday", nullable = true)
     private LocalDate birthday;
     @Basic
-    @Column(name = "profile_path", nullable = true, length = 80)
+    @Column(name = "image_path", nullable = true, length = 80)
     private String profile_path;
    /* @OneToMany(mappedBy = "director")
     private Set<Film> directedFilms;*/
     /*@OneToMany(mappedBy = "know_for_department", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Play> roles;*/
 
-    @Basic
-    @Column(name = "know_for_department", nullable = true, length = 80)
-    private String know_for_department;
+
 
     public long getId() {
         return id;
