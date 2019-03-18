@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.org"> 
+          xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 <!--
@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="webjars/Semantic-UI/2.4.1/semantic.css">
     <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
     <link href="../static/images/illustration/cineman_favicon.jpg" rel="icon" type="image/jpg" th:href="@{../static/images/illustration/cineman_favicon.jpg}" />
-    <title>Cineman</title>
+    <title>Springboot Cinéma</title>
 </head>
-<body>
+<div >
 
 <!-- Page Contents -->
-<div class="pusher">
+<div class="pusher" id="body">
     <div class="ui inverted vertical masthead center aligned segment">
 
         <div class="ui container">
@@ -27,14 +27,15 @@
                 <a th:href="@{/actor_list}" class="item">Acteurs</a>
                 <a th:href="@{/film_form}" class="item">Ajout de films</a>
                 <div class="right item">
-                    <a class="ui inverted teal button">S'identifier</a>
-                    <a style="margin-left: 10px;" class="ui inverted teal button">S'inscrire</a>
+                    <a class="ui inverted teal button" id="identification">S'identifier</a>
+                    <a style="margin-left: 10px;" class="ui inverted teal button" id="inscription" >S'inscrire</a>
+
                 </div>
             </div>
         </div>
 
         <div class="ui text container">
-            <h2 class="ui center aligned icon header" id="titre"><i class="film icon" id="film icon"></i>CINEMAN </h2>
+            <h2 class="ui center aligned icon header" id="titre"><i class="film icon" id="film icon"></i>Springboot Cinéma </h2>
             <h2>“Le cinéma, c’est un oeil ouvert sur le monde.”</h2>
             <div class="ui inverted teal button" ><a th:href="@{/film_list}">Voir les films</a><i class="right arrow icon"></i></div>
         </div>
@@ -58,6 +59,61 @@
 
 </div>
 <!--<th:block th:insert="fragments/script.html :  script"> </th:block>-->
+    </div>
+</div>
+<div class="ui inverted segment formInscription" id="formInscription">
+    <h2 class="ui center aligned icon header"><i class="circular user icon userIconForm"></i>Inscription </h2>
+    <div class="ui inverted form">
+        <div class="field">
+            <label>Nom</label>
+            <input placeholder="Nom" type="text">
+        </div>
+        <div class="field">
+            <label>Prénom</label>
+            <input placeholder="Prénom" type="text">
+        </div>
+        <div class="field">
+            <label>Mot de passe</label>
+            <input placeholder="Mot de passe" type="text">
+        </div>
+        <button class="ui inverted red button btnAnnuler" id ="annuler"><i class="times circle outline icon"></i>annuler</button>
+        <button class="ui inverted teal button btnValider">s'inscire <i class="angle right icon"></i></button>
+    </div>
+</div>
+</div>
 
+<div class="ui inverted segment formInscription" id="formConnection">
+    <h2 class="ui center aligned icon header"><i class="circular user icon userIconForm"></i>Connexion</h2>
+    <div class="ui inverted form">
+        <div class="field">
+            <label>Nom</label>
+            <input placeholder="Nom" type="text">
+        </div>
+        <div class="field">
+            <label>Prénom</label>
+            <input placeholder="Prénom" type="text">
+        </div>
+        <div class="field">
+            <label>Mot de passe</label>
+            <input placeholder="Mot de passe" type="text">
+        </div>
+        <button class="ui inverted red button btnAnnuler" id ="annuler2"><i class="times circle outline icon"></i>annuler</button>
+        <button class="ui inverted teal button btnValider">connexion <i class="angle right icon"></i></button>
+    </div>
+</div>
+</div>
+<footer>
+<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+        <div class="ui stackable inverted divided equal height stackable grid colFooter">
+            <h3 class="ui inverted header">Springboot Cinéma <span class="footerSlog">Fiérement propusé par</span> <span class="footerJe">Jérôme_gidé</span></h3>
+    </div>
+</div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+<script src="../static/js/index.js" th:src="@{js/index.js}"></script>
 </body>
+
+
 </html>
